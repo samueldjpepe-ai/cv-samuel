@@ -4,18 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CV - Samuel Alejandro Niño Bermudez </title>
-<script src="https://cdn.tailwindcss.com"></script> 
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {},
+      }
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* Estilos Base para Modo Claro */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f5; /* Zinc 100 */
     color: #18181b; /* Zinc 900 */
 	background: linear-gradient(120deg, #FFFFFF 30%, rgba(23,198,160,1.00) 180%);
+    transition: background-color 0.3s, color 0.3s; /* Transición para un cambio suave */
 }
+
+/* Estilos Específicos para Modo Oscuro (usando el selector 'dark') */
+html.dark body {
+    background-color: #18181b; /* Zinc 900 */
+    color: #f4f4f5; /* Zinc 100 */
+    background: linear-gradient(120deg, #18181b 30%, #0d9488 180%); /* Gradiente oscuro/teal-600 */
+}
+html.dark .text-zinc-900 { color: #fafafa; } /* Zinc 50 para títulos principales */
+html.dark .text-zinc-700 { color: #d4d4d8; } /* Zinc 300 */
+html.dark .text-zinc-600 { color: #a1a1aa; } /* Zinc 400 */
+html.dark .text-zinc-500 { color: #71717a; } /* Zinc 500 */
+html.dark .text-zinc-400 { color: #52525b; } /* Zinc 600 */
+html.dark .border-zinc-200 { border-color: #3f3f46; } /* Zinc 700 para bordes */
+html.dark .bg-white { background-color: #1A1A1C; } /* Zinc 800 para el contenido */
+html.dark .bg-zinc-200 { background-color: #CDCDCD; } /* Zinc 700 para barras de habilidad */
+html.dark .bg-zinc-300 { background-color: #CDCDCD; } /* Zinc 600 para la imagen de perfil */
+
+
 .timeline-item-content {
     transition: all 0.3s ease-in-out;
     max-height: 0;
@@ -69,26 +97,35 @@ transform: translateY(0);
 </style>
 </head>
 <body class="antialiased">
+
+<button id="theme-toggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-white shadow-lg text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-300">
+    <svg id="moon-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+    <svg id="sun-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+</button>
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
   <header id="profile" class="py-16 md:py-24 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900">Samuel Alejandro Niño Bermudez</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-50">Samuel Alejandro Niño Bermudez</h1>
     <p class="mt-4 text-xl md:text-3xl font-medium text-teal-600">Diseñador y Maquetador Web | Especialista Front-end</p>
-    
+
     <div class="mt-8 mb-8 flex justify-center animated-item" style="animation-delay: 0.5s;">
-      <div class="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-zinc-300 flex items-center justify-center"> <img src="https://scontent.fbog23-1.fna.fbcdn.net/v/t39.30808-6/566365332_4138252096390145_1123845328444461483_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHa8TzWzFg3dIATBrbUxNx9X0A8clirWnZfQDxyWKtadmDqox8dN97gqJDinz5Tc8CgSg8Abi4v6cicbypvKbOX&_nc_ohc=4Hcvf4qp_FQQ7kNvwFZJxGB&_nc_oc=AdkZnf6432DIokVYqUd_vQ7NQsJ36ZvB9AFtPuTkpXsAbOhRs7NVe5y1cdHiPDzl7qI&_nc_zt=23&_nc_ht=scontent.fbog23-1.fna&_nc_gid=8a5A0T4K9nfyPPKFya6PuA&oh=00_AffqhiG3CaPPpSnB7Qe01x0yQGr-lwep76xDWZZ_Nxxh6A&oe=68F86301" alt="Foto de Perfil de Samuel A. Niño" class="h-full w-full object-cover"> </div>
+      <div class="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-white dark:border-zinc-800 shadow-xl overflow-hidden bg-zinc-300 dark:bg-zinc-600 flex items-center justify-center"> <img src="https://scontent.fbog23-1.fna.fbcdn.net/v/t39.30808-6/566365332_4138252096390145_1123845328444461483_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHa8TzWzFg3dIATBrbUxNx9X0A8clirWnZfQDxyWKtadmDqox8dN97gqJDinz5Tc8CgSg8Abi4v6cicbypvKbOX&_nc_ohc=4Hcvf4qp_FQQ7kNvwFZJxGB&_nc_oc=AdkZnf6432DIokVYqUd_vQ7NQsJ36ZvB9AFtPuTkpXsAbOhRs7NVe5y1cdHiPDzl7qI&_nc_zt=23&_nc_ht=scontent.fbog23-1.fna&_nc_gid=8a5A0T4K9nfyPPKFya6PuA&oh=00_AffqhiG3CaPPpSnB7Qe01x0yQGr-lwep76xDWZZ_Nxxh6A&oe=68F86301" alt="Foto de Perfil de Samuel A. Niño" class="h-full w-full object-cover"> </div>
     </div>
      <p class="mt-4 text-xl md:text-1xl font-medium text-teal-800">Samueldjpepe@gmail.com | 322 200 6465</p>
-    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, especializado en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
+    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 dark:text-zinc-300 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, especializado en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
   </header>
   <main>
-    <section id="skills" class="py-16 md:py-24 border-t border-zinc-200">
+    <section id="skills" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
       <div class="animated-item" data-delay="0.1">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 mb-4">Habilidades y Competencias</h2>
-        <p class="text-center text-zinc-600 max-w-2xl mx-auto mb-12"> Mi perfil combina la creatividad del diseño con la lógica del desarrollo. Esta sección ofrece una visión general de mis capacidades técnicas y creativas, mostrando cómo ambos mundos se unen para crear soluciones web completas. </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-4">Habilidades y Competencias</h2>
+        <p class="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12"> Mi perfil combina la creatividad del diseño con la lógica del desarrollo. Esta sección ofrece una visión general de mis capacidades técnicas y creativas, mostrando cómo ambos mundos se unen para crear soluciones web completas. </p>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         <div id="skills-tech" class="space-y-6 animated-item" data-delay="0.4">
-          <h3 class="text-2xl font-bold text-zinc-800 flex items-center gap-3">
+          <h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
@@ -98,7 +135,7 @@ transform: translateY(0);
           <canvas id="skillsChart"></canvas>
         </div>
         <div id="skills-design" class="space-y-6 animated-item" data-delay="0.6">
-          <h3 class="text-2xl font-bold text-zinc-800 flex items-center gap-3">
+          <h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
             </svg>
@@ -106,23 +143,66 @@ transform: translateY(0);
         </div>
       </div>
     </section>
-    <section id="experience" class="py-16 md:py-24 border-t border-zinc-200">
+    <section id="experience" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
       <div class="animated-item" data-delay="0.1">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 mb-4">Trayectoria Profesional y Académica</h2>
-        <p class="text-center text-zinc-600 max-w-2xl mx-auto mb-16"> Esta línea de tiempo interactiva narra mi viaje profesional. Haz clic en cada hito para explorar los detalles de mis roles, responsabilidades y logros clave en cada etapa de mi carrera y formación. </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-4">Trayectoria Profesional y Académica</h2>
+        <p class="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-16"> Esta línea de tiempo interactiva narra mi viaje profesional. Haz clic en cada hito para explorar los detalles de mis roles, responsabilidades y logros clave en cada etapa de mi carrera y formación. </p>
       </div>
       <div id="timeline" class="relative max-w-2xl mx-auto">
-        <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-zinc-200"></div>
+        <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-zinc-200 dark:bg-zinc-700"></div>
       </div>
     </section>
   </main>
-  <footer class="text-center py-10 border-t border-zinc-200 animated-item" data-delay="0.1">
-    <p class="text-zinc-500">CV Interactivo de Samuel Alejandro Niño Bermudez</p>
-    <p class="text-sm text-zinc-400 mt-2">Diseñado y desarrollado para una mejor experiencia de visualización.</p>
+  <footer class="text-center py-10 border-t border-zinc-200 dark:border-zinc-700 animated-item" data-delay="0.1">
+    <p class="text-zinc-500 dark:text-zinc-500">CV Interactivo de Samuel Alejandro Niño Bermudez</p>
+    <p class="text-sm text-zinc-400 dark:text-zinc-600 mt-2">Diseñado y desarrollado para una mejor experiencia de visualización.</p>
   </footer>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Lógica del Modo Oscuro ---
+        const htmlElement = document.documentElement;
+        const toggleButton = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+
+        // Función para aplicar o quitar la clase 'dark' y actualizar el localStorage
+        const toggleTheme = () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateIcon();
+        };
+
+        // Función para actualizar el ícono del botón
+        const updateIcon = () => {
+            if (htmlElement.classList.contains('dark')) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        };
+
+        // 1. Verificar la preferencia guardada en localStorage o la preferencia del sistema
+        const storedTheme = localStorage.getItem('theme');
+        const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (storedTheme === 'dark' || (!storedTheme && systemPreference)) {
+            htmlElement.classList.add('dark');
+        }
+        updateIcon(); // Llamar al inicio para mostrar el icono correcto
+
+        // 2. Event Listener para el botón de alternancia
+        toggleButton.addEventListener('click', toggleTheme);
+
+        // --- Lógica del CV (Sin Cambios) ---
 
         const cvData = {
             skills: {
@@ -222,23 +302,23 @@ transform: translateY(0);
              container.innerHTML += `
                 <div class="w-full animated-item" data-delay="${delay}">
                     <div class="flex justify-between items-center mb-1">
-                        <span class="text-base font-medium text-zinc-700">${skill.name}</span>
-                        <span class="text-sm font-medium text-zinc-500">${skill.level}%</span>
+                        <span class="text-base font-medium text-zinc-700 dark:text-zinc-300">${skill.name}</span>
+                        <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">${skill.level}%</span>
                     </div>
-                    <div class="w-full bg-zinc-200 rounded-full h-2.5">
+                    <div class="w-full bg-zinc-200 dark:bg-zinc-700 rounded-full h-2.5">
                         <div class="bg-teal-600 h-2.5 rounded-full skill-bar-fill" style="width: 0%;" data-level="${skill.level}"></div>
                     </div>
                 </div>
             `;
         };
-        
+
         cvData.skills.tech.forEach(skill => {
             createSkillBar(skill, skillsTechContainer, true);
         });
         cvData.skills.design.forEach(skill => {
             createSkillBar(skill, skillsDesignContainer, false);
         });
-        
+
         // Animate skill bars on intersection (using the existing observer logic)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -247,7 +327,7 @@ transform: translateY(0);
                     skillBars.forEach(bar => {
                         bar.style.width = `${bar.dataset.level}%`;
                     });
-                    
+
                     // Activate animated items within the section
                     entry.target.querySelectorAll('.animated-item').forEach(el => {
                         setTimeout(() => {
@@ -255,12 +335,12 @@ transform: translateY(0);
                             el.style.transform = 'translateY(0)';
                         }, parseFloat(el.dataset.delay) * 1000);
                     });
-                    
+
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 }); // Bajo umbral para que la animación empiece antes
-        
+
         observer.observe(document.getElementById('skills'));
         observer.observe(document.getElementById('experience'));
         observer.observe(document.querySelector('footer'));
@@ -278,12 +358,12 @@ transform: translateY(0);
                             ${item.type === 'Trabajo' ? '💼' : '🎓'}
                         </h1>
                     </div>
-                    <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 cursor-pointer hover:shadow-2xl transition-shadow duration-300">
+                    <div class="order-1 bg-white dark:bg-zinc-800 rounded-lg shadow-xl w-5/12 px-6 py-4 cursor-pointer hover:shadow-2xl transition-shadow duration-300">
                         <p class="text-sm font-medium text-teal-600">${item.date}</p>
-                        <h3 class="mb-2 font-bold text-zinc-800 text-lg">${item.title}</h3>
-                        <p class="text-sm leading-snug tracking-wide text-zinc-600 mb-3">${item.institution}</p>
+                        <h3 class="mb-2 font-bold text-zinc-800 dark:text-zinc-100 text-lg">${item.title}</h3>
+                        <p class="text-sm leading-snug tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">${item.institution}</p>
                         <div class="timeline-item-content">
-                             <ul class="list-disc list-inside text-sm text-zinc-700 space-y-2">
+                             <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-2">
                                 ${item.details.map(d => `<li>${d}</li>`).join('')}
                             </ul>
                         </div>
@@ -303,7 +383,7 @@ transform: translateY(0);
         document.querySelectorAll('.animated-item').forEach(item => {
             item.style.transitionDelay = `${item.dataset.delay}s`;
         });
-        
+
         // Special handler for initial header animation
         window.addEventListener('load', () => {
              // Already handled by CSS keyframes
@@ -357,6 +437,19 @@ transform: translateY(0);
                 cutout: '70%'
             }
         });
+
+        // Solución temporal para que el color de la leyenda del gráfico se adapte al modo oscuro
+        // Esto no es ideal, ya que chart.js no reacciona al modo oscuro de forma nativa sin un theme
+        const updateChartColors = () => {
+            const isDark = htmlElement.classList.contains('dark');
+             skillsChart.options.plugins.legend.labels.color = isDark ? '#d4d4d8' : '#3f3f46'; // Zinc 300 / Zinc 700
+             skillsChart.update();
+        };
+
+        // Observador para actualizar el gráfico cuando cambia el tema
+        const observerForChart = new MutationObserver(updateChartColors);
+        observerForChart.observe(htmlElement, { attributes: true, attributeFilter: ['class'] });
+        updateChartColors(); // Llamar al inicio
     });
 </script>
 </body>
