@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV - Samuel Alejandro Niño Bermudez </title>
+<script src="https://cdn.tailwindcss.com"></script> 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f5; /* Zinc 100 */
+    color: #18181b; /* Zinc 900 */
+	background: linear-gradient(120deg, #FFFFFF 30%, rgba(23,198,160,1.00) 180%);
+}
+.timeline-item-content {
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+.timeline-item.active .timeline-item-content {
+    max-height: 500px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.skill-bar-fill {
+    transition: width 0.8s ease-in-out;
+}
+/* Base para animaciones de entrada */
+.animated-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+/* Animación para el header - AJUSTADA PARA INCLUIR LA FOTO */
+#profile > * {
+    opacity: 0;
+    animation: fadeInSlideUp 0.8s forwards;
+}
+#profile h1 {
+    animation-delay: 0.1s;
+}
+#profile p.text-xl {
+    animation-delay: 0.3s;
+}
+/* La foto tendrá un delay de 0.5s (el div en sí lo tiene en el HTML con style) */
+#contact-info span:nth-child(1) {
+    animation-delay: 0.7s;
+} /* AJUSTADO */
+#contact-info span:nth-child(3) {
+    animation-delay: 0.9s;
+} /* AJUSTADO */
+#profile-summary {
+    animation-delay: 1.1s;
+} /* AJUSTADO */
+@keyframes fadeInSlideUp {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+</style>
+</head>
+<body class="antialiased">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+  <header id="profile" class="py-16 md:py-24 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900">Samuel Alejandro Niño Bermudez</h1>
+    <p class="mt-4 text-xl md:text-3xl font-medium text-teal-600">Diseñador y Maquetador Web | Especialista Front-end</p>
+    
+    <div class="mt-8 mb-8 flex justify-center animated-item" style="animation-delay: 0.5s;">
+      <div class="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-zinc-300 flex items-center justify-center"> <img src="https://scontent.fbog23-1.fna.fbcdn.net/v/t39.30808-6/566365332_4138252096390145_1123845328444461483_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHa8TzWzFg3dIATBrbUxNx9X0A8clirWnZfQDxyWKtadmDqox8dN97gqJDinz5Tc8CgSg8Abi4v6cicbypvKbOX&_nc_ohc=4Hcvf4qp_FQQ7kNvwFZJxGB&_nc_oc=AdkZnf6432DIokVYqUd_vQ7NQsJ36ZvB9AFtPuTkpXsAbOhRs7NVe5y1cdHiPDzl7qI&_nc_zt=23&_nc_ht=scontent.fbog23-1.fna&_nc_gid=8a5A0T4K9nfyPPKFya6PuA&oh=00_AffqhiG3CaPPpSnB7Qe01x0yQGr-lwep76xDWZZ_Nxxh6A&oe=68F86301" alt="Foto de Perfil de Samuel A. Niño" class="h-full w-full object-cover"> </div>
+    </div>
+     <p class="mt-4 text-xl md:text-1xl font-medium text-teal-800">Samueldjpepe@gmail.com | 322 200 6465</p>
+    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, especializado en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
+  </header>
+  <main>
+    <section id="skills" class="py-16 md:py-24 border-t border-zinc-200">
+      <div class="animated-item" data-delay="0.1">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 mb-4">Habilidades y Competencias</h2>
+        <p class="text-center text-zinc-600 max-w-2xl mx-auto mb-12"> Mi perfil combina la creatividad del diseño con la lógica del desarrollo. Esta sección ofrece una visión general de mis capacidades técnicas y creativas, mostrando cómo ambos mundos se unen para crear soluciones web completas. </p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <div id="skills-tech" class="space-y-6 animated-item" data-delay="0.4">
+          <h3 class="text-2xl font-bold text-zinc-800 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            Desarrollo y Tecnología </h3>
+        </div>
+        <div class="chart-container w-full max-w-xs mx-auto h-64 sm:h-80 lg:order-first animated-item" data-delay="0.2">
+          <canvas id="skillsChart"></canvas>
+        </div>
+        <div id="skills-design" class="space-y-6 animated-item" data-delay="0.6">
+          <h3 class="text-2xl font-bold text-zinc-800 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            Diseño y Creatividad </h3>
+        </div>
+      </div>
+    </section>
+    <section id="experience" class="py-16 md:py-24 border-t border-zinc-200">
+      <div class="animated-item" data-delay="0.1">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 mb-4">Trayectoria Profesional y Académica</h2>
+        <p class="text-center text-zinc-600 max-w-2xl mx-auto mb-16"> Esta línea de tiempo interactiva narra mi viaje profesional. Haz clic en cada hito para explorar los detalles de mis roles, responsabilidades y logros clave en cada etapa de mi carrera y formación. </p>
+      </div>
+      <div id="timeline" class="relative max-w-2xl mx-auto">
+        <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-zinc-200"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="text-center py-10 border-t border-zinc-200 animated-item" data-delay="0.1">
+    <p class="text-zinc-500">CV Interactivo de Samuel Alejandro Niño Bermudez</p>
+    <p class="text-sm text-zinc-400 mt-2">Diseñado y desarrollado para una mejor experiencia de visualización.</p>
+  </footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const cvData = {
+            skills: {
+                tech: [
+                    { name: 'HTML5, CSS3, JavaScript, Python', level: 95 },
+                    { name: 'Diseño Responsive', level: 90 },
+                    { name: 'Manejo de APIs (AJAX, Fetch)', level: 80 },
+                    { name: 'Interacción con Bases de Datos', level: 70 },
+                    { name: 'WordPress & CMS', level: 75 },
+                    { name: 'Optimización SEO', level: 65 }
+                ],
+                design: [
+                    { name: 'Adobe Photoshop & Illustrator', level: 95 },
+                    { name: 'Diseño UX/UI', level: 85 },
+                    { name: 'Adobe After Effects & Animate', level: 90 },
+                    { name: 'Adobe InDesign & Premiere Pro', level: 80 },
+                    { name: 'Identidad de Marca', level: 88 },
+                    { name: 'Creatividad y conceptualización', level: 92 }
+                ]
+            },
+            timeline: [
+                 {
+                    type: 'Educación',
+                    date: '2014',
+                    title: 'Ingeniería de Sistemas (6 Semestres)',
+                    institution: 'UNIVERSIDAD DISTRITAL FRANCISCO JOSÉ DE CALDAS',
+                    details: [
+                        'Completé 6 semestres, adquiriendo una base sólida en lógica de programación, algoritmos y estructuras de datos que aplico hoy en el desarrollo web.'
+                    ]
+                },
+                {
+                    type: 'Trabajo',
+                    date: 'Feb 2019 – Nov 2019',
+                    title: 'Diseñador Gráfico',
+                    institution: 'GREAT PLACE TO WORK',
+                    details: [
+                        'Creación de material gráfico de alto impacto (presentaciones, reportes, infografías) para comunicar resultados de auditoría y marca a clientes corporativos.'
+                    ]
+                },
+                {
+                    type: 'Educación',
+                    date: 'Graduación',
+                    title: 'Diseñador Gráfico Profesional',
+                    institution: 'CORPORACIÓN ESCUELA DE ARTES Y LETRAS',
+                    details: [
+                        'Título profesional con énfasis en Animación, proporcionando una fuerte base en comunicación visual, estética y producción de medios digitales.'
+                    ]
+                },
+                {
+                    type: 'Trabajo',
+                    date: 'Ene 2020 – Jul 2025',
+                    title: 'Diseñador y Programador de Cursos Online',
+                    institution: 'DIDACSIS',
+                    details: [
+                        '<strong>Maquetación y Desarrollo Front-end:</strong> Lideré el desarrollo y maquetación de cursos online, garantizando la usabilidad y la correcta visualización en todos los dispositivos.',
+                        '<strong>Integración de Datos:</strong> Implementé funcionalidades interactivas en JavaScript, incluyendo el manejo de Solicitudes HTTP (APIs) para gestionar datos de progreso y cargar contenido de forma dinámica desde Bases de Datos.',
+                        '<strong>Diseño UX/UI:</strong> Responsable de la experiencia de usuario y la calidad visual de la plataforma, aplicando principios de diseño y animación para una experiencia inmersiva.'
+                    ]
+                },
+                {
+                    type: 'Educación',
+                    date: 'Curso',
+                    title: 'Desarrollo Web',
+                    institution: 'GOOGLE ACTIVATE',
+                    details: [
+                        'Curso que solidificó mis conocimientos fundamentales en tecnologías web, incluyendo HTML, CSS y JavaScript.'
+                    ]
+                },
+                 {
+                    type: 'Trabajo',
+                    date: 'Ene 2021 – May 2025',
+                    title: 'Diseñador Gráfico y Creación de Contenido',
+                    institution: 'AULA DE HUMANIDADES',
+                    details: [
+                        'Participé en la creación y desarrollo de piezas gráficas y animadas para contenido educativo digital, manteniendo la coherencia de la marca.'
+                    ]
+                },
+                 {
+                    type: 'Educación',
+                    date: 'Curso',
+                    title: 'Curso de Desasrollo con IA',
+                    institution: 'BIG school',
+                    details: [
+                        'Adquisición de habilidades para integrar modelos de Inteligencia Artificial y Machine Learning en aplicaciones web, utilizando Python y librerías especializadas. Enfoque en la optimización de procesos y la creación de funcionalidades inteligentes.'
+                    ]
+                }
+            ].reverse()
+        };
+
+        // Render Skills
+        const skillsTechContainer = document.getElementById('skills-tech');
+        const skillsDesignContainer = document.getElementById('skills-design');
+
+        let techDelay = 0.5;
+        const createSkillBar = (skill, container, isLeft) => {
+            const delay = techDelay += 0.1;
+             container.innerHTML += `
+                <div class="w-full animated-item" data-delay="${delay}">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-base font-medium text-zinc-700">${skill.name}</span>
+                        <span class="text-sm font-medium text-zinc-500">${skill.level}%</span>
+                    </div>
+                    <div class="w-full bg-zinc-200 rounded-full h-2.5">
+                        <div class="bg-teal-600 h-2.5 rounded-full skill-bar-fill" style="width: 0%;" data-level="${skill.level}"></div>
+                    </div>
+                </div>
+            `;
+        };
+        
+        cvData.skills.tech.forEach(skill => {
+            createSkillBar(skill, skillsTechContainer, true);
+        });
+        cvData.skills.design.forEach(skill => {
+            createSkillBar(skill, skillsDesignContainer, false);
+        });
+        
+        // Animate skill bars on intersection (using the existing observer logic)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+                    skillBars.forEach(bar => {
+                        bar.style.width = `${bar.dataset.level}%`;
+                    });
+                    
+                    // Activate animated items within the section
+                    entry.target.querySelectorAll('.animated-item').forEach(el => {
+                        setTimeout(() => {
+                            el.style.opacity = 1;
+                            el.style.transform = 'translateY(0)';
+                        }, parseFloat(el.dataset.delay) * 1000);
+                    });
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 }); // Bajo umbral para que la animación empiece antes
+        
+        observer.observe(document.getElementById('skills'));
+        observer.observe(document.getElementById('experience'));
+        observer.observe(document.querySelector('footer'));
+
+        // Render Timeline
+        const timelineContainer = document.getElementById('timeline');
+        cvData.timeline.forEach((item, index) => {
+            const isLeft = index % 2 === 0;
+            const delay = 0.2 + (index * 0.1);
+            const itemHTML = `
+                <div class="timeline-item mb-8 flex justify-between items-center w-full ${isLeft ? 'flex-row-reverse' : ''} animated-item" data-delay="${delay}">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-10 flex items-center order-1 bg-teal-600 shadow-xl w-8 h-8 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">
+                            ${item.type === 'Trabajo' ? '💼' : '🎓'}
+                        </h1>
+                    </div>
+                    <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4 cursor-pointer hover:shadow-2xl transition-shadow duration-300">
+                        <p class="text-sm font-medium text-teal-600">${item.date}</p>
+                        <h3 class="mb-2 font-bold text-zinc-800 text-lg">${item.title}</h3>
+                        <p class="text-sm leading-snug tracking-wide text-zinc-600 mb-3">${item.institution}</p>
+                        <div class="timeline-item-content">
+                             <ul class="list-disc list-inside text-sm text-zinc-700 space-y-2">
+                                ${item.details.map(d => `<li>${d}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            timelineContainer.innerHTML += itemHTML;
+        });
+
+        document.querySelectorAll('.timeline-item .cursor-pointer').forEach(item => {
+            item.addEventListener('click', () => {
+                item.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Initialize general animated items
+        document.querySelectorAll('.animated-item').forEach(item => {
+            item.style.transitionDelay = `${item.dataset.delay}s`;
+        });
+        
+        // Special handler for initial header animation
+        window.addEventListener('load', () => {
+             // Already handled by CSS keyframes
+        });
+
+
+        // Skills Chart
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        const skillsChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Desarrollo y Tecnología', 'Diseño y Creatividad'],
+                datasets: [{
+                    data: [cvData.skills.tech.length, cvData.skills.design.length],
+                    backgroundColor: [
+                        'rgba(13, 148, 136, 0.8)', // teal-600
+                        'rgba(161, 161, 170, 0.8)', // zinc-400
+                    ],
+                    borderColor: [
+                        '#0d9488',
+                        '#a1a1aa',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: "'Inter', sans-serif"
+                            },
+                             color: '#3f3f46' // Zinc 700
+                        }
+                    },
+                    tooltip: {
+                         bodyFont: {
+                            size: 14,
+                            family: "'Inter', sans-serif"
+                        },
+                        titleFont: {
+                             size: 16,
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    });
+</script>
+</body>
+</html>
