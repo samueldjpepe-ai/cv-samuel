@@ -321,194 +321,222 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
         toggleButton.addEventListener('click', toggleTheme);
 
 
-        // --- LUEVA LÓGICA: Carrusel 3D Avanzado con Loop Infinito Seguro ---
-        const viewport = document.getElementById('carousel-viewport');
-        const prevBtn = document.getElementById('carousel-prev');
-        const nextBtn = document.getElementById('carousel-next');
-        const dotsContainer = document.getElementById('carousel-dots');
+
+
+
+// --- LUEVA LÓGICA: Carrusel 3D Avanzado con Loop Infinito Seguro ---
+const viewport = document.getElementById('carousel-viewport');
+const prevBtn = document.getElementById('carousel-prev');
+const nextBtn = document.getElementById('carousel-next');
+const dotsContainer = document.getElementById('carousel-dots');
+ 
+const originalCards = Array.from(viewport.querySelectorAll('.carousel-card'));
+const totalOriginals = originalCards.length;
+
+// Flag de control para evitar colisiones entre animaciones "smooth" y el loop instantáneo
+let isAnimating = false; 
+
+// 1. Crear Clones al inicio y al final para permitir la ilusión óptica del loop infinito
+const numClones = 1; // clonamos 4 tarjetas de cada lado para cubrir pantallas grandes
+for (let i = totalOriginals - numClones; i < totalOriginals; i++) {
+    const clone = originalCards[i].cloneNode(true);
+    clone.classList.add('is-clone');
+    viewport.insertBefore(clone, viewport.firstChild);
+}
+for (let i = 0; i < numClones; i++) {
+    const clone = originalCards[i].cloneNode(true);
+    clone.classList.add('is-clone');
+    viewport.appendChild(clone);
+}
+
+// Obtener la lista final incluyendo clones
+let allCards = Array.from(viewport.querySelectorAll('.carousel-card'));
+
+// 2. Crear los dots (puntos de control) basados únicamente en los elementos originales
+originalCards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = `h-2 w-2 rounded-full flex-shrink-0 transition-all duration-300 ${i === 0 ? 'bg-teal-600 w-4' : 'bg-zinc-300 dark:bg-zinc-600'}`;
+    dot.setAttribute('aria-label', `Ir al proyecto ${i + 1}`);
+    dot.addEventListener('click', () => {
+        // Actualizamos el índice global antes de movernos
+        currentTargetIndex = numClones + i;
+        const targetCard = allCards[currentTargetIndex];
+        scrollToCard(targetCard);
+    });
+    dotsContainer.appendChild(dot);
+});
+const dots = Array.from(dotsContainer.children);
+
+// Desplazar suavemente a un elemento centrándolo
+const scrollToCard = (card) => {
+    isAnimating = true; // Bloqueamos el detector de loop temporalmente
+
+    const cardOffset = card.offsetLeft;
+    const viewportHalfWidth = viewport.offsetWidth / 2;
+    const cardHalfWidth = card.offsetWidth / 2;
+    
+    viewport.scrollTo({
+        left: cardOffset - viewportHalfWidth + cardHalfWidth,
+        behavior: 'smooth'
+    });
+
+    // Desbloqueamos el loop una vez que la animación CSS/Scroll haya terminado (aprox 400ms)
+    setTimeout(() => {
+        isAnimating = false;
+        // Forzamos una última validación manual de posición al terminar por seguridad
+        update3DEffectAndLoop(); 
+    }, 450);
+};
+
+// 3. Función Central: Efecto 3D de escala y manejo invisible de los extremos (Loop)
+const update3DEffectAndLoop = () => {
+    const viewportCenter = viewport.scrollLeft + viewport.offsetWidth / 2;
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    allCards.forEach((card, index) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(viewportCenter - cardCenter);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = index;
+        }
+
+        // Reiniciar estilos 3D base
+        card.classList.remove('scale-140', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
+        card.classList.add('scale-90', 'opacity-40', 'z-10');
+    });
+
+    // Asignar el realce 3D al elemento más cercano al centro del viewport
+    const centralCard = allCards[closestIndex];
+    if (centralCard) {
+        centralCard.classList.remove('scale-90', 'opacity-40', 'z-10');
+        centralCard.classList.add('scale-110', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
+    }
+
+    // Obtener el índice real mapeado (descontando clones) para activar el dot correspondiente
+    const rawIndex = parseInt(centralCard.getAttribute('data-index'));
+    if (!isNaN(rawIndex)) {
+        dots.forEach((dot, i) => {
+            if (i === rawIndex) {
+                dot.classList.add('bg-teal-600', 'w-4');
+                dot.classList.remove('bg-zinc-300', 'dark:bg-zinc-600');
+            } else {
+                dot.classList.remove('bg-teal-600', 'w-4');
+                dot.classList.add('bg-zinc-300', 'dark:bg-zinc-600');
+            }
+        });
+    }
+
+    // --- MAGIA DEL LOOP INFINITO ---
+    // No saltamos de extremo si el usuario está arrastrando o si se está ejecutando una animación por click
+    if (!isDown && !isAnimating) { 
+        if (closestIndex < numClones) {
+            // Extremo izquierdo -> Saltar al original correspondiente en el extremo derecho
+            const targetIndex = numClones + totalOriginals - (numClones - closestIndex);
+            viewport.scrollLeft = allCards[targetIndex].offsetLeft - (viewport.offsetWidth / 2) + (allCards[targetIndex].offsetWidth / 2);
+            currentTargetIndex = targetIndex; // Sincronizamos índice de flechas
+        } else if (closestIndex >= numClones + totalOriginals) {
+            // Extremo derecho -> Saltar al original correspondiente en el extremo izquierdo
+            const targetIndex = numClones + (closestIndex - (numClones + totalOriginals));
+            viewport.scrollLeft = allCards[targetIndex].offsetLeft - (viewport.offsetWidth / 2) + (allCards[targetIndex].offsetWidth / 2);
+            currentTargetIndex = targetIndex; // Sincronizamos índice de flechas
+        }
+    }
+};
+
+// Escuchadores del contenedor
+viewport.addEventListener('scroll', update3DEffectAndLoop);
+window.addEventListener('resize', () => {
+    initCarouselPosition();
+    update3DEffectAndLoop();
+});
+
+// 4. Navegación clásica por flechas con lógica indexada segura
+let currentTargetIndex = numClones; // Inicializa en el primer original real
+
+prevBtn.addEventListener('click', () => {
+    if (isAnimating) return; // Ignorar clicks si está en medio de una transición
+    currentTargetIndex--;
+    
+    if (currentTargetIndex < numClones) {
+        // En lugar de romper la animación, viajamos al clon izquierdo de forma fluida...
+        scrollToCard(allCards[currentTargetIndex]);
         
-        const originalCards = Array.from(viewport.querySelectorAll('.carousel-card'));
-        const totalOriginals = originalCards.length;
+        // ...y cuando termine, el detector del scroll normal se encargará de reubicarlo al derecho instantáneamente.
+    } else {
+        scrollToCard(allCards[currentTargetIndex]);
+    }
+});
 
-        // 1. Crear Clones al inicio y al final para permitir la ilusión óptica del loop infinito
-        const numClones = 1; // clonamos 4 tarjetas de cada lado para cubrir pantallas grandes
-        for (let i = totalOriginals - numClones; i < totalOriginals; i++) {
-            const clone = originalCards[i].cloneNode(true);
-            clone.classList.add('is-clone');
-            viewport.insertBefore(clone, viewport.firstChild);
+nextBtn.addEventListener('click', () => {
+    if (isAnimating) return; // Ignorar clicks si está en medio de una transición
+    currentTargetIndex++;
+    
+    if (currentTargetIndex >= numClones + totalOriginals) {
+        // Viajamos al clon derecho de forma fluida...
+        scrollToCard(allCards[currentTargetIndex]);
+        
+        // ...y al terminar la transición, el loop se encargará del reseteo invisible.
+    } else {
+        scrollToCard(allCards[currentTargetIndex]);
+    }
+});
+
+// 5. Soporte avanzado de Arrastre (Drag and Drop) con Mouse
+let isDown = false;
+let startX;
+let scrollLeft;
+
+viewport.addEventListener('mousedown', (e) => {
+    if (isAnimating) return;
+    isDown = true;
+    startX = e.pageX - viewport.offsetLeft;
+    scrollLeft = viewport.scrollLeft;
+});
+viewport.addEventListener('mouseleave', () => { isDown = false; });
+viewport.addEventListener('mouseup', () => { 
+    if (!isDown) return;
+    isDown = false;
+    
+    // Al soltar el click, recalculamos cuál quedó más cerca para fijar el índice objetivo de las flechas
+    const viewportCenter = viewport.scrollLeft + viewport.offsetWidth / 2;
+    let closestIndex = numClones;
+    let minDistance = Infinity;
+    allCards.forEach((card, idx) => {
+        const distance = Math.abs(viewportCenter - (card.offsetLeft + card.offsetWidth / 2));
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = idx;
         }
-        for (let i = 0; i < numClones; i++) {
-            const clone = originalCards[i].cloneNode(true);
-            clone.classList.add('is-clone');
-            viewport.appendChild(clone);
-        }
+    });
+    currentTargetIndex = closestIndex;
+    // Ajustamos suavemente al centro del elemento seleccionado
+    scrollToCard(allCards[currentTargetIndex]);
+});
+viewport.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - viewport.offsetLeft;
+    const walk = (x - startX) * 1.5; 
+    viewport.scrollLeft = scrollLeft - walk;
+});
 
-        // Obtener la lista final incluyendo clones
-        let allCards = Array.from(viewport.querySelectorAll('.carousel-card'));
+// Inicializador de posición por defecto de arranque (Ir directo al primer original saltando los clones iniciales)
+const initCarouselPosition = () => {
+    const initialTarget = allCards[numClones];
+    viewport.scrollLeft = initialTarget.offsetLeft - (viewport.offsetWidth / 2) + (initialTarget.offsetWidth / 2);
+};
 
-        // 2. Crear los dots (puntos de control) basados únicamente en los elementos originales
-        originalCards.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.className = `h-2 w-2 rounded-full flex-shrink-0 transition-all duration-300 ${i === 0 ? 'bg-teal-600 w-4' : 'bg-zinc-300 dark:bg-zinc-600'}`;
-            dot.setAttribute('aria-label', `Ir al proyecto ${i + 1}`);
-            dot.addEventListener('click', () => {
-                // Buscamos la tarjeta real en la lista extendida saltándonos los clones iniciales
-                const targetCard = allCards[i];
-                scrollToCard(targetCard);
-            });
-            dotsContainer.appendChild(dot);
-        });
-        const dots = Array.from(dotsContainer.children);
+// Ejecutar inicialización limpia al cargar la página
+setTimeout(() => {
+    initCarouselPosition();
+    update3DEffectAndLoop();
+}, 300);
 
-        // Desplazar suavemente a un elemento centrándolo
-        const scrollToCard = (card) => {
-            const cardOffset = card.offsetLeft;
-            const viewportHalfWidth = viewport.offsetWidth / 2;
-            const cardHalfWidth = card.offsetWidth / 2;
-            viewport.scrollTo({
-                left: cardOffset - viewportHalfWidth + cardHalfWidth,
-                behavior: 'smooth'
-            });
-        };
 
-        // 3. Función Central: Efecto 3D de escala y manejo invisible de los extremos (Loop)
-        let isLoopingTransition = false;
-
-        const update3DEffectAndLoop = () => {
-            const viewportCenter = viewport.scrollLeft + viewport.offsetWidth / 2;
-            let closestIndex = 0;
-            let minDistance = Infinity;
-
-            allCards.forEach((card, index) => {
-                const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-                const distance = Math.abs(viewportCenter - cardCenter);
-
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestIndex = index;
-                }
-
-                // Reiniciar estilos 3D base
-                card.classList.remove('scale-110', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
-                card.classList.add('scale-90', 'opacity-40', 'z-10');
-            });
-
-            // Asignar el realce 3D al elemento más cercano al centro del viewport
-            const centralCard = allCards[closestIndex];
-            if (centralCard) {
-                centralCard.classList.remove('scale-90', 'opacity-40', 'z-10');
-                centralCard.classList.add('scale-110', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
-            }
-
-            // Obtener el índice real mapeado (descontando clones) para activar el dot correspondiente
-            const rawIndex = parseInt(centralCard.getAttribute('data-index'));
-            if (!isNaN(rawIndex)) {
-                dots.forEach((dot, i) => {
-                    if (i === rawIndex) {
-                        dot.classList.add('bg-teal-600', 'w-4');
-                        dot.classList.remove('bg-zinc-300', 'dark:bg-zinc-600');
-                    } else {
-                        dot.classList.remove('bg-teal-600', 'w-4');
-                        dot.classList.add('bg-zinc-300', 'dark:bg-zinc-600');
-                    }
-                });
-            }
-
-            // --- MAGIA DEL LOOP INFINITO ---
-            // Si el usuario entra al territorio de los clones extremos izquierdo o derecho, 
-            // reubicamos el scroll instantáneamente hacia el elemento original equivalente.
-            if (!isDown) { 
-                // Evitamos saltar bruscamente mientras el usuario arrastra físicamente con el mouse
-                if (closestIndex < numClones) {
-                    // Extremo izquierdo -> Saltar al original correspondiente en el extremo derecho
-                    const targetIndex = numClones + totalOriginals - (numClones - closestIndex);
-                    viewport.scrollLeft = allCards[targetIndex].offsetLeft - (viewport.offsetWidth / 2) + (allCards[targetIndex].offsetWidth / 2);
-                } else if (closestIndex >= numClones + totalOriginals) {
-                    // Extremo derecho -> Saltar al original correspondiente en el extremo izquierdo
-                    const targetIndex = numClones + (closestIndex - (numClones + totalOriginals));
-                    viewport.scrollLeft = allCards[targetIndex].offsetLeft - (viewport.offsetWidth / 2) + (allCards[targetIndex].offsetWidth / 2);
-                }
-            }
-        };
-
-        // Escuchadores del contenedor
-        viewport.addEventListener('scroll', update3DEffectAndLoop);
-        window.addEventListener('resize', () => {
-            initCarouselPosition();
-            update3DEffectAndLoop();
-        });
-
-        // 4. Navegación clásica por flechas con lógica indexada segura
-        let currentTargetIndex = numClones; // Inicializa en el primer original real
-
-        prevBtn.addEventListener('click', () => {
-            currentTargetIndex--;
-            if (currentTargetIndex < 0) {
-                // Si sobrepasa los clones de la izquierda, resetea la posición al extremo derecho de forma invisible
-                viewport.scrollLeft = allCards[numClones + totalOriginals - 1].offsetLeft - (viewport.offsetWidth / 2) + (allCards[numClones + totalOriginals - 1].offsetWidth / 2);
-                currentTargetIndex = numClones + totalOriginals - 2;
-            }
-            scrollToCard(allCards[currentTargetIndex]);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentTargetIndex++;
-            if (currentTargetIndex >= allCards.length) {
-                // Si sobrepasa los clones de la derecha, resetea la posición al extremo izquierdo de forma invisible
-                viewport.scrollLeft = allCards[numClones].offsetLeft - (viewport.offsetWidth / 2) + (allCards[numClones].offsetWidth / 2);
-                currentTargetIndex = numClones + 1;
-            }
-            scrollToCard(allCards[currentTargetIndex]);
-        });
-
-        // 5. Soporte avanzado de Arrastre (Drag and Drop) con Mouse
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        viewport.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - viewport.offsetLeft;
-            scrollLeft = viewport.scrollLeft;
-        });
-        viewport.addEventListener('mouseleave', () => { isDown = false; });
-        viewport.addEventListener('mouseup', () => { 
-            isDown = false;
-            // Al soltar el click, recalculamos cuál quedó más cerca para fijar el índice objetivo de las flechas
-            const viewportCenter = viewport.scrollLeft + viewport.offsetWidth / 2;
-            let closestIndex = numClones;
-            let minDistance = Infinity;
-            allCards.forEach((card, idx) => {
-                const distance = Math.abs(viewportCenter - (card.offsetLeft + card.offsetWidth / 2));
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestIndex = idx;
-                }
-            });
-            currentTargetIndex = closestIndex;
-            // Ajustamos suavemente al centro del elemento seleccionado
-            scrollToCard(allCards[currentTargetIndex]);
-        });
-        viewport.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - viewport.offsetLeft;
-            const walk = (x - startX) * 1.5; 
-            viewport.scrollLeft = scrollLeft - walk;
-        });
-
-        // Inicializador de posición por defecto de arranque (Ir directo al primer original saltando los clones iniciales)
-        const initCarouselPosition = () => {
-            const initialTarget = allCards[numClones];
-            viewport.scrollLeft = initialTarget.offsetLeft - (viewport.offsetWidth / 2) + (initialTarget.offsetWidth / 2);
-        };
-
-        // Ejecutar inicialización limpia al cargar la página
-        setTimeout(() => {
-            initCarouselPosition();
-            update3DEffectAndLoop();
-        }, 300);
-
+        
 
         // --- Datos del CV ---
         const cvData = {
