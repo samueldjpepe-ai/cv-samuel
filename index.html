@@ -353,7 +353,7 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
             dot.setAttribute('aria-label', `Ir al proyecto ${i + 1}`);
             dot.addEventListener('click', () => {
                 // Buscamos la tarjeta real en la lista extendida saltándonos los clones iniciales
-                const targetCard = allCards[numClones + i];
+                const targetCard = allCards;
                 scrollToCard(targetCard);
             });
             dotsContainer.appendChild(dot);
