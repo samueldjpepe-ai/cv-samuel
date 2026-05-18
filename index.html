@@ -325,7 +325,7 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
 
 
 
-// --- LOGICA DE CONTROL: Carrusel 3D Avanzado con Loop Infinito Seguro ---
+// --- LÓGICA DE CONTROL: Carrusel 3D Avanzado con Loop Infinito Seguro ---
 const viewport = document.getElementById('carousel-viewport');
 const prevBtn = document.getElementById('carousel-prev');
 const nextBtn = document.getElementById('carousel-next');
@@ -465,7 +465,7 @@ prevBtn.addEventListener('click', () => {
         const dummieIndex = numClones + totalOriginals; 
         viewport.scrollLeft = allCards[dummieIndex].offsetLeft - (viewport.offsetWidth / 2) + (allCards[dummieIndex].offsetWidth / 2);
         
-        // 2. Establecemos el índice real del elemento anterior
+        // 2. Establecemos el índice real del elemento anterior (el último original)
         currentTargetIndex = numClones + totalOriginals - 1;
         
         // 3. Deslizamos suavemente hacia él
@@ -482,12 +482,12 @@ nextBtn.addEventListener('click', () => {
     
     // Si la flecha nos manda al clon de la derecha (último elemento de la lista)
     if (currentTargetIndex >= numClones + totalOriginals) {
-        // 1. Teletransporte invisible e instantáneo al clon izquierdo equivalente
+        // 1. Teletransporte invisible e instantáneo al clon izquierdo equivalente (índice 0)
         const dummieIndex = numClones - 1;
         viewport.scrollLeft = allCards[dummieIndex].offsetLeft - (viewport.offsetWidth / 2) + (allCards[dummieIndex].offsetWidth / 2);
         
-        // 2. Establecemos el índice real en el segundo elemento original
-        currentTargetIndex = numClones + 1;
+        // 2. CORREGIDO: Establecemos el índice exactamente en el primer elemento original real (índice 1)
+        currentTargetIndex = numClones; 
         
         // 3. Deslizamos suavemente hacia él
         scrollToCard(allCards[currentTargetIndex]);
@@ -544,6 +544,11 @@ setTimeout(() => {
     initCarouselPosition();
     update3DEffectAndLoop();
 }, 300);
+
+
+
+
+        
 
 
         
