@@ -321,138 +321,44 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
         toggleButton.addEventListener('click', toggleTheme);
 
 
-
         // --- LUEVA LÓGICA: Carrusel 3D Avanzado con Loop Infinito Seguro ---
-const viewport = document.getElementById('carousel-viewport');
-const prevBtn = document.getElementById('carousel-prev');
-const nextBtn = document.getElementById('carousel-next');
-const dotsContainer = document.getElementById('carousel-dots');
-
-const originalCards = Array.from(viewport.querySelectorAll('.carousel-card'));
-const totalOriginals = originalCards.length;
-
-// 1. Crear Clones al inicio y al final para permitir la ilusión óptica del loop infinito
-const numClones = 4; // clonamos 4 tarjetas de cada lado para cubrir pantallas grandes
-
-// Clones al inicio (de atrás hacia adelante para mantener el orden)
-for (let i = totalOriginals - numClones; i < totalOriginals; i++) {
-    if (originalCards[i]) {
-        const clone = originalCards[i].cloneNode(true);
-        clone.classList.add('is-clone');
-        viewport.insertBefore(clone, viewport.firstChild);
-    }
-}
-// Clones al final
-for (let i = 0; i < numClones; i++) {
-    if (originalCards[i]) {
-        const clone = originalCards[i].cloneNode(true);
-        clone.classList.add('is-clone');
-        viewport.appendChild(clone);
-    }
-}
-
-// Obtener la lista final incluyendo clones
-let allCards = Array.from(viewport.querySelectorAll('.carousel-card'));
-
-// Variable de control para evitar colisiones entre transiciones de botones y scroll manual
-let isTransitioning = false;
-
-// 2. Crear los dots (puntos de control) basados únicamente en los elementos originales
-originalCards.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = `h-2 w-2 rounded-full flex-shrink-0 transition-all duration-300 ${i === 0 ? 'bg-teal-600 w-4' : 'bg-zinc-300 dark:bg-zinc-600'}`;
-    dot.setAttribute('aria-label', `Ir al proyecto ${i + 1}`);
-    dot.addEventListener('click', () => {
-        if (isTransitioning) return;
-        const targetCard = allCards[numClones + i];
-        scrollToCard(targetCard, 'smooth');
-    });
-    dotsContainer.appendChild(dot);
-});
-const dots = Array.from(dotsContainer.children); 
-
-// --- FUNCIONES DE NAVEGACIÓN Y CORRECCIÓN DE BUGS ---
-
-// Función centralizada para hacer scroll
-function scrollToCard(targetCard, behavior = 'smooth') {
-    if (!targetCard) return;
-    isTransitioning = true;
-    
-    viewport.scrollTo({
-        left: targetCard.offsetLeft - viewport.offsetLeft,
-        behavior: behavior
-    });
-
-    // Liberar el control después de que termine la animación smooth (aprox 400ms)
-    setTimeout(() => { isTransitioning = false; }, 400);
-}
-
-// Posicionar inicialmente el carrusel saltándose los primeros clones (Sin animación)
-function initCarousel() {
-    requestAnimationFrame(() => {
-        if (allCards[numClones]) {
-            scrollToCard(allCards[numClones], 'auto');
-        }
-    });
-}
-window.addEventListener('load', initCarousel);
-
-// 3. Lógica para Botones Next y Prev
-nextBtn?.addEventListener('click', () => {
-    if (isTransitioning) return;
-    const currentScroll = viewport.scrollLeft;
-    // Buscamos la tarjeta que esté más cerca del scroll actual y pasamos a la siguiente
-    const closest = allCards.find(card => card.offsetLeft >= currentScroll + 5);
-    const nextCard = closest ? closest.nextElementSibling : null;
-    if (nextCard) scrollToCard(nextCard, 'smooth');
-});
-
-prevBtn?.addEventListener('click', () => {
-    if (isTransitioning) return;
-    const currentScroll = viewport.scrollLeft;
-    // Buscamos la tarjeta actual y pasamos a la anterior
-    const closest = allCards.find(card => card.offsetLeft >= currentScroll - 5);
-    const prevCard = closest ? closest.previousElementSibling : null;
-    if (prevCard) scrollToCard(prevCard, 'smooth');
-});
-
-// 4. El Secreto del Loop Infinito: Manejador del Scroll (Salto invisible)
-viewport.addEventListener('scroll', () => {
-    const scrollLeft = viewport.scrollLeft;
-    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-
-    // Si llegamos al extremo izquierdo (zona de clones iniciales) -> Saltamos al final real
-    if (scrollLeft <= 5) {
-        viewport.scrollLeft = allCards[numClones + totalOriginals - 1].offsetLeft;
-    } 
-    // Si llegamos al extremo derecho (zona de clones finales) -> Saltamos al inicio real
-    else if (scrollLeft >= maxScroll - 5) {
-        viewport.scrollLeft = allCards[numClones].offsetLeft;
-    }
-
-    // 5. Actualizar los DOTS dinámicamente según la tarjeta visible
-    const center = scrollLeft + (viewport.clientWidth / 2);
-    let activeIndex = 0;
-
-    allCards.forEach((card, index) => {
-        const cardStart = card.offsetLeft;
-        const cardEnd = cardStart + card.clientWidth;
+        const viewport = document.getElementById('carousel-viewport');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const dotsContainer = document.getElementById('carousel-dots');
         
-        if (center >= cardStart && center <= cardEnd) {
-            // Convertimos el índice global del array al índice original (0 a N)
-            activeIndex = (index - numClones + totalOriginals) % totalOriginals;
-        }
-    });
+        const originalCards = Array.from(viewport.querySelectorAll('.carousel-card'));
+        const totalOriginals = originalCards.length;
 
-    // Pintar el dot activo
-    dots.forEach((dot, i) => {
-        if (i === activeIndex) {
-            dot.className = "h-2 w-4 rounded-full flex-shrink-0 transition-all duration-300 bg-teal-600";
-        } else {
-            dot.className = "h-2 w-2 rounded-full flex-shrink-0 transition-all duration-300 bg-zinc-300 dark:bg-zinc-600";
+        // 1. Crear Clones al inicio y al final para permitir la ilusión óptica del loop infinito
+        const numClones = 1; // clonamos 4 tarjetas de cada lado para cubrir pantallas grandes
+        for (let i = totalOriginals - numClones; i < totalOriginals; i++) {
+            const clone = originalCards[i].cloneNode(true);
+            clone.classList.add('is-clone');
+            viewport.insertBefore(clone, viewport.firstChild);
         }
-    });
-});
+        for (let i = 0; i < numClones; i++) {
+            const clone = originalCards[i].cloneNode(true);
+            clone.classList.add('is-clone');
+            viewport.appendChild(clone);
+        }
+
+        // Obtener la lista final incluyendo clones
+        let allCards = Array.from(viewport.querySelectorAll('.carousel-card'));
+
+        // 2. Crear los dots (puntos de control) basados únicamente en los elementos originales
+        originalCards.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = `h-2 w-2 rounded-full flex-shrink-0 transition-all duration-300 ${i === 0 ? 'bg-teal-600 w-4' : 'bg-zinc-300 dark:bg-zinc-600'}`;
+            dot.setAttribute('aria-label', `Ir al proyecto ${i + 1}`);
+            dot.addEventListener('click', () => {
+                // Buscamos la tarjeta real en la lista extendida saltándonos los clones iniciales
+                const targetCard = allCards[numClones + i];
+                scrollToCard(targetCard);
+            });
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.children);
 
         // Desplazar suavemente a un elemento centrándolo
         const scrollToCard = (card) => {
