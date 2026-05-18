@@ -99,13 +99,28 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
     </svg>
 </button>
 
-<div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out">
-    <button class="absolute top-4 right-4 text-white hover:text-teal-400 transition-colors duration-200">
+<div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 select-none">
+    <button id="close-lightbox" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors duration-200 z-50 p-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
-    <img id="lightbox-img" src="" alt="Vista previa" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 ease-out">
+    
+    <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-zinc-900/50 hover:bg-zinc-800 text-white p-3 rounded-full transition-all duration-200 hover:text-teal-400 z-50 border border-zinc-700/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+
+    <div class="relative max-w-5xl w-full aspect-video flex items-center justify-center m-4">
+        <img id="lightbox-img" src="" alt="Vista previa" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 ease-out object-contain">
+    </div>
+
+    <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-zinc-900/50 hover:bg-zinc-800 text-white p-3 rounded-full transition-all duration-200 hover:text-teal-400 z-50 border border-zinc-700/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
 </div>
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -136,7 +151,7 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
     <section id="skills" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
       <div class="animated-item" data-delay="0.1">
         <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-4">Habilidades y Competencias</h2>
-        <p class="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12"> Mi perfil combina la creatividad del diseño con la lógica del desarrollo. Esta sección ofrece una visión general de mis capacidades técnicas y creativas, mostrando cómo ambos worlds se unen para crear soluciones web completas. </p>
+        <p class="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12"> Mi perfil combina la creatividad del diseño con la lógica del desarrollo. Esta sección ofrece una visión general de mis capacidades técnicas y creativas, mostrando cómo ambos mundos se unen para crear soluciones web completas. </p>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         <div id="skills-tech" class="space-y-6 animated-item" data-delay="0.4">
@@ -164,75 +179,74 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
         <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-12">Proyectos Realizados</h2>
       </div>
       
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] md:auto-rows-[220px]">
-        
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:col-span-2 md:row-span-2 animated-item" data-delay="0.1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.05">
           <img src="images/1.jpeg" alt="Proyecto 1" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.15">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.1">
           <img src="images/2.jpeg" alt="Proyecto 2" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:row-span-2 animated-item" data-delay="0.2">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.15">
           <img src="images/3.jpeg" alt="Proyecto 3" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.25">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.2">
           <img src="images/4.jpeg" alt="Proyecto 4" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.3">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.25">
           <img src="images/5.jpeg" alt="Proyecto 5" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:col-span-2 animated-item" data-delay="0.35">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.3">
           <img src="images/6.jpeg" alt="Proyecto 6" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:row-span-2 animated-item" data-delay="0.4">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.35">
           <img src="images/7.jpeg" alt="Proyecto 7" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.45">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.4">
           <img src="images/8.jpeg" alt="Proyecto 8" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:col-span-2 md:row-span-2 animated-item" data-delay="0.5">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.45">
           <img src="images/9.jpeg" alt="Proyecto 9" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.55">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.5">
           <img src="images/10.jpeg" alt="Proyecto 10" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:row-span-2 animated-item" data-delay="0.6">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.55">
           <img src="images/11.jpeg" alt="Proyecto 11" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.65">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.6">
           <img src="images/12.jpeg" alt="Proyecto 12" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:col-span-2 animated-item" data-delay="0.7">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.65">
           <img src="images/13.jpeg" alt="Proyecto 13" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.75">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.7">
           <img src="images/14.jpeg" alt="Proyecto 14" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.8">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.75">
           <img src="images/15.jpeg" alt="Proyecto 15" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:row-span-2 animated-item" data-delay="0.85">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.8">
           <img src="images/16.jpeg" alt="Proyecto 16" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:col-span-2 md:row-span-2 animated-item" data-delay="0.9">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.85">
           <img src="images/17.jpeg" alt="Proyecto 17" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.95">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.9">
           <img src="images/18.jpeg" alt="Proyecto 18" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="1.0">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.95">
           <img src="images/19.jpeg" alt="Proyecto 19" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 md:col-span-2 animated-item" data-delay="1.05">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="1.0">
           <img src="images/20.jpeg" alt="Proyecto 20" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="1.1">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="1.05">
           <img src="images/21.jpeg" alt="Proyecto 21" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="1.15">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="1.1">
           <img src="images/22.jpeg" alt="Proyecto 22" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animated-item" data-delay="1.2">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="1.15">
           <img src="images/23.jpeg" alt="Proyecto 23" class="gallery-img w-full h-full object-cover transform hover:scale-110 transition-transform duration-500 ease-out cursor-zoom-in">
         </div>
       </div>
@@ -295,17 +309,31 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
 
         toggleButton.addEventListener('click', toggleTheme);
 
-        // --- Lógica Interactiva del Visor Lightbox ---
+        // --- Lógica Interactiva del Visor Lightbox + Carrusel ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        const galleryImages = document.querySelectorAll('.gallery-img');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const closeBtn = document.getElementById('close-lightbox');
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-img'));
+        
+        let currentImgIndex = 0;
 
-        galleryImages.forEach(img => {
+        const showImage = (index) => {
+            if (index < 0) index = galleryImages.length - 1;
+            if (index >= galleryImages.length) index = 0;
+            
+            currentImgIndex = index;
+            const targetImg = galleryImages[currentImgIndex];
+            
+            lightboxImg.src = targetImg.src;
+            lightboxImg.alt = targetImg.alt;
+        };
+
+        galleryImages.forEach((img, index) => {
             img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
+                showImage(index);
                 lightbox.classList.remove('hidden');
-                // Sutil delay para activar animación de entrada del zoom
                 setTimeout(() => {
                     lightboxImg.classList.remove('scale-95');
                     lightboxImg.classList.add('scale-100');
@@ -318,14 +346,29 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
             lightboxImg.classList.add('scale-95');
             setTimeout(() => {
                 lightbox.classList.add('hidden');
-            }, 150); // coincide con la transición del CSS
+            }, 150);
         };
 
+        // Eventos de botones
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita que cierre el lightbox al hacer clic en la flecha
+            showImage(currentImgIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentImgIndex + 1);
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', closeLightbox);
-        
+
+        // Navegación por teclado
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
-                closeLightbox();
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showImage(currentImgIndex - 1);
+                if (e.key === 'ArrowRight') showImage(currentImgIndex + 1);
             }
         });
 
