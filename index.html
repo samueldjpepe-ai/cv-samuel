@@ -403,15 +403,15 @@ const update3DEffectAndLoop = () => {
             closestIndex = index;
         }
 // Reiniciar estilos 3D base (Tarjetas Laterales)
-    card.classList.remove('scale-130', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
-    card.classList.add('scale-70', 'opacity-40', 'z-10'); // Reducidas al 70%
+    card.classList.remove('scale-110', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
+    card.classList.add('scale-90', 'opacity-40', 'z-10'); // Reducidas al 70%
 });
 
 // Asignar el realce 3D al elemento más cercano al centro del viewport (Tarjeta Central)
 const centralCard = allCards[closestIndex];
 if (centralCard) {
-    centralCard.classList.remove('scale-70', 'opacity-40', 'z-10');
-    centralCard.classList.add('scale-130', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl'); // Agrandada al 130%
+    centralCard.classList.remove('scale-90', 'opacity-40', 'z-10');
+    centralCard.classList.add('scale-110', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl'); // Agrandada al 130%
 }
 
     // Obtener el índice real mapeado (descontando clones) para activar el dot correspondiente
