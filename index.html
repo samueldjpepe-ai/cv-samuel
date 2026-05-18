@@ -331,7 +331,7 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; }
         const totalOriginals = originalCards.length;
 
         // 1. Crear Clones al inicio y al final para permitir la ilusión óptica del loop infinito
-        const numClones = 4; // clonamos 4 tarjetas de cada lado para cubrir pantallas grandes
+        const numClones = 1; // clonamos 4 tarjetas de cada lado para cubrir pantallas grandes
         for (let i = totalOriginals - numClones; i < totalOriginals; i++) {
             const clone = originalCards[i].cloneNode(true);
             clone.classList.add('is-clone');
