@@ -24,25 +24,24 @@ body {
     background-color: #f4f4f5; /* Zinc 100 */
     color: #18181b; /* Zinc 900 */
     background: linear-gradient(120deg, #FFFFFF 30%, #4dbdb3 180%);
-    transition: background-color 0.3s, color 0.3s; /* Transición para un cambio suave */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Estilos Específicos para Modo Oscuro (usando el selector 'dark') */
+/* Estilos Específicos para Modo Oscuro */
 html.dark body {
     background-color: #18181b; /* Zinc 900 */
     color: #f4f4f5; /* Zinc 100 */
-    background: linear-gradient(227deg, #0c1b1e 30%, #4dbdb3 180%); /* Gradiente oscuro/teal-600 */
+    background: linear-gradient(227deg, #0c1b1e 30%, #4dbdb3 180%);
 }
-html.dark .text-zinc-900 { color: #fafafa; } /* Zinc 50 para títulos principales */
-html.dark .text-zinc-700 { color: #d4d4d8; } /* Zinc 300 */
-html.dark .text-zinc-600 { color: #a1a1aa; } /* Zinc 400 */
-html.dark .text-zinc-500 { color: #71717a; } /* Zinc 500 */
-html.dark .text-zinc-400 { color: #52525b; } /* Zinc 600 */
-html.dark .border-zinc-200 { border-color: #3f3f46; } /* Zinc 700 para bordes */
-html.dark .bg-white { background-color: #1A1A1C; } /* Zinc 800 para el contenido */
-html.dark .bg-zinc-200 { background-color: #CDCDCD; } /* Zinc 700 para barras de habilidad */
-html.dark .bg-zinc-300 { background-color: #CDCDCD; } /* Zinc 600 para la imagen de perfil */
-
+html.dark .text-zinc-900 { color: #fafafa; }
+html.dark .text-zinc-700 { color: #d4d4d8; }
+html.dark .text-zinc-600 { color: #a1a1aa; }
+html.dark .text-zinc-500 { color: #71717a; }
+html.dark .text-zinc-400 { color: #52525b; }
+html.dark .border-zinc-200 { border-color: #3f3f46; }
+html.dark .bg-white { background-color: #1A1A1C; }
+html.dark .bg-zinc-200 { background-color: #CDCDCD; }
+html.dark .bg-zinc-300 { background-color: #CDCDCD; }
 
 .timeline-item-content {
     transition: all 0.3s ease-in-out;
@@ -63,46 +62,25 @@ html.dark .bg-zinc-300 { background-color: #CDCDCD; } /* Zinc 600 para la imagen
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-/* Animación para el header - AJUSTADA PARA INCLUIR LA FOTO */
+/* Animación para el header */
 #profile > * {
     opacity: 0;
     animation: fadeInSlideUp 0.8s forwards;
 }
-#profile h1 {
-    animation-delay: 0.1s;
-}
-#profile p.text-xl {
-    animation-delay: 0.3s;
-}
-/* La foto tendrá un delay de 0.5s */
-#contact-info span:nth-child(1) {
-    animation-delay: 0.7s;
-} 
-#contact-info span:nth-child(3) {
-    animation-delay: 0.9s;
-} 
-#profile-summary {
-    animation-delay: 1.1s;
-} 
+#profile h1 { animation-delay: 0.1s; }
+#profile p.text-xl { animation-delay: 0.3s; }
+
+#contact-info span:nth-child(1) { animation-delay: 0.7s; } 
+#contact-info span:nth-child(3) { animation-delay: 0.9s; } 
+#profile-summary { animation-delay: 1.1s; } 
+
 @keyframes fadeInSlideUp {
-from {
-opacity: 0;
-transform: translateY(20px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-/* Rotación del indicador visual al estar activo */
-.timeline-item.active .chevron-icon {
-    transform: rotate(180deg);
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Animación sutil de rebote infinito al pasar el mouse por la tarjeta */
-.timeline-item .cursor-pointer:hover .chevron-icon {
-    animation: microBounce 1s infinite alternate;
-}
+.timeline-item.active .chevron-icon { transform: rotate(180deg); }
+.timeline-item .cursor-pointer:hover .chevron-icon { animation: microBounce 1s infinite alternate; }
 
 @keyframes microBounce {
     0% { transform: translateY(0) rotate(var(--tw-rotate, 0deg)); }
@@ -124,7 +102,7 @@ transform: translateY(0);
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
   <header id="profile" class="py-16 md:py-24 text-center">
     <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-50">Samuel Alejandro Niño Bermudez</h1>
-    <p class="mt-4 text-xl md:text-3xl font-medium text-teal-600">Diseñador y Maquetador Web |  Front-end</p>
+    <p class="mt-4 text-xl md:text-3xl font-medium text-teal-600">Diseñador y Maquetador Web | Front-end</p>
 
     <div class="mt-8 mb-8 flex justify-center animated-item" style="animation-delay: 0.5s;">
       <div class="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-white dark:border-zinc-800 shadow-xl overflow-hidden bg-zinc-300 dark:bg-zinc-600 flex items-center justify-center"> 
@@ -142,7 +120,7 @@ transform: translateY(0);
       </a>
     </div>
 
-    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 dark:text-zinc-300 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, especializado en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
+    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 dark:text-zinc-300 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, specialized en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
   </header>
 
   <main>
@@ -174,59 +152,32 @@ transform: translateY(0);
 
     <section id="portfolio" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
       <div class="animated-item" data-delay="0.1">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-4">Proyectos Realizados</h2>
-        <p class="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12">
-          Una muestra de trabajos donde combino el diseño UI/UX con el desarrollo interactivo y la integración de plataformas e-learning.
-        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-12">Proyectos Realizados</h2>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.2">
-          <div class="h-48 bg-zinc-200 dark:bg-zinc-700 relative overflow-hidden">
-            <img src="ruta-imagen-proyecto1.jpg" alt="Plataforma de Cursos Online" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-          </div>
-          <div class="p-6">
-            <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Desarrollo Web / UX</span>
-            <h3 class="text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1 mb-2">Plataforma Didacsis</h3>
-            <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">Maquetación e implementación de cursos interactivos con consumo de APIs para el seguimiento en tiempo real del estudiante.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">HTML5/CSS3</span>
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">JavaScript</span>
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">APIs</span>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.2">
+          <img src="ruta-imagen-proyecto1.jpg" alt="Proyecto 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
         </div>
 
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.4">
-          <div class="h-48 bg-zinc-200 dark:bg-zinc-700 relative overflow-hidden">
-            <img src="ruta-imagen-proyecto2.jpg" alt="Contenido Animado E-learning" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-          </div>
-          <div class="p-6">
-            <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Diseño Gráfico / Animación</span>
-            <h3 class="text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1 mb-2">Aula de Humanidades</h3>
-            <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">Creación de assets visuales y piezas animadas multimedia para entornos educativos virtuales interactivos.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">Illustrator</span>
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">After Effects</span>
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">UI Design</span>
-            </div>
-          </div>
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.3">
+          <img src="ruta-imagen-proyecto2.jpg" alt="Proyecto 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
         </div>
 
-        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.6">
-          <div class="h-48 bg-zinc-200 dark:bg-zinc-700 relative overflow-hidden">
-            <img src="ruta-imagen-proyecto3.jpg" alt="Integración de IA" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-          </div>
-          <div class="p-6">
-            <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Desarrollo Avanzado</span>
-            <h3 class="text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1 mb-2">Web App Inteligente</h3>
-            <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">Interfaz adaptativa con backend en Python orientada a la automatización y análisis predictivo de datos.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">Python</span>
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">Tailwind CSS</span>
-              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">IA Model</span>
-            </div>
-          </div>
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.4">
+          <img src="ruta-imagen-proyecto3.jpg" alt="Proyecto 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
+        </div>
+
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.5">
+          <img src="ruta-imagen-proyecto4.jpg" alt="Proyecto 4" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
+        </div>
+
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.6">
+          <img src="ruta-imagen-proyecto5.jpg" alt="Proyecto 5" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
+        </div>
+
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 aspect-video animated-item" data-delay="0.7">
+          <img src="ruta-imagen-proyecto6.jpg" alt="Proyecto 6" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
         </div>
       </div>
     </section>
@@ -442,7 +393,7 @@ transform: translateY(0);
             timelineContainer.innerHTML += itemHTML;
         });
 
-        // --- Evento Click para desplegar información de la Línea de Tiempo ---
+        // --- Evento Click Línea de Tiempo ---
         document.querySelectorAll('.timeline-card').forEach(card => {
             card.addEventListener('click', () => {
                 const container = card.closest('.timeline-item');
@@ -450,12 +401,12 @@ transform: translateY(0);
             });
         });
 
-        // --- Inicializar delays de transición de los elementos renderizados ---
+        // --- Inicializar delays ---
         document.querySelectorAll('.animated-item').forEach(item => {
             item.style.transitionDelay = `${item.dataset.delay}s`;
         });
 
-        // --- Intersection Observer para Animaciones ---
+        // --- Intersection Observer ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -490,8 +441,8 @@ transform: translateY(0);
                 datasets: [{
                     data: [cvData.skills.tech.length, cvData.skills.design.length],
                     backgroundColor: [
-                        'rgba(13, 148, 136, 0.8)', // teal-600
-                        'rgba(161, 161, 170, 0.8)', // zinc-400
+                        'rgba(13, 148, 136, 0.8)',
+                        'rgba(161, 161, 170, 0.8)',
                     ],
                     borderColor: [
                         '#0d9488',
@@ -507,22 +458,13 @@ transform: translateY(0);
                     legend: {
                         position: 'bottom',
                         labels: {
-                            font: {
-                                size: 14,
-                                family: "'Inter', sans-serif"
-                            },
+                            font: { size: 14, family: "'Inter', sans-serif" },
                             color: '#3f3f46'
                         }
                     },
                     tooltip: {
-                        bodyFont: {
-                            size: 14,
-                            family: "'Inter', sans-serif"
-                        },
-                        titleFont: {
-                            size: 16,
-                            family: "'Inter', sans-serif"
-                        }
+                        bodyFont: { size: 14, family: "'Inter', sans-serif" },
+                        titleFont: { size: 16, family: "'Inter', sans-serif" }
                     }
                 },
                 cutout: '70%'
