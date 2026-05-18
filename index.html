@@ -404,15 +404,15 @@ const update3DEffectAndLoop = () => {
         }
 
         // Reiniciar estilos 3D base
-        card.classList.remove('scale-140', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
+        card.classList.remove('scale-110', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
         card.classList.add('scale-90', 'opacity-40', 'z-10');
     });
 
     // Asignar el realce 3D al elemento más cercano al centro del viewport
     const centralCard = allCards[closestIndex];
     if (centralCard) {
-        centralCard.classList.remove('scale-90', 'opacity-40', 'z-10');
-        centralCard.classList.add('scale-120', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
+        centralCard.classList.remove('scale-70', 'opacity-40', 'z-10');
+        centralCard.classList.add('scale-130', 'opacity-100', 'z-20', 'border-teal-500', 'shadow-2xl');
     }
 
     // Obtener el índice real mapeado (descontando clones) para activar el dot correspondiente
