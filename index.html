@@ -23,7 +23,7 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f5; /* Zinc 100 */
     color: #18181b; /* Zinc 900 */
-	background: linear-gradient(120deg, #FFFFFF 30%, rgba(23,198,160,1.00) 180%);
+    background: linear-gradient(120deg, #FFFFFF 30%, rgba(23,198,160,1.00) 180%);
     transition: background-color 0.3s, color 0.3s; /* Transición para un cambio suave */
 }
 
@@ -114,8 +114,19 @@ transform: translateY(0);
     <div class="mt-8 mb-8 flex justify-center animated-item" style="animation-delay: 0.5s;">
       <div class="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-white dark:border-zinc-800 shadow-xl overflow-hidden bg-zinc-300 dark:bg-zinc-600 flex items-center justify-center"> <img src="566365332_4138252096390145_1123845328444461483_n.jpg" alt="Foto de Perfil de Samuel A. Niño" class="h-full w-full object-cover"> </div>
     </div>
-     <p class="mt-4 text-xl md:text-1xl font-medium text-teal-800">Samueldjpepe@gmail.com | 322 200 6465</p>
-    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 dark:text-zinc-300 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, especializado en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
+    <p class="mt-4 text-xl md:text-1xl font-medium text-teal-800">Samueldjpepe@gmail.com | 322 200 6465</p>
+    
+    <!-- Botón de Visualización de CV en PDF -->
+    <div class="mt-6 flex justify-center animated-item" style="animation-delay: 0.9s;">
+      <a href="tu-hoja-de-vida.pdf" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Visualizar Hoja de Vida (PDF)
+      </a>
+    </div>
+
+    <p id="profile-summary" class="mt-10 max-w-3xl mx-auto text-base md:text-lg text-zinc-700 dark:text-zinc-300 text-left sm:text-center leading-relaxed"> Diseñador y Maquetador Web con más de 5 años de experiencia, specialized en la creación de interfaces de usuario (UX/UI) funcionales y estéticamente atractivas. Poseo una sólida base técnica en Front-end (HTML5, CSS3, JavaScript, Python), complementada con experiencia en el manejo de Solicitudes HTTP (APIs) para la integración de datos dinámicos y la interacción con Bases de Datos. Mi formación dual en Diseño Gráfico e Ingeniería de Sistemas me permite asegurar tanto la calidad visual como el rendimiento técnico de los proyectos. </p>
   </header>
   <main>
     <section id="skills" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
@@ -143,6 +154,70 @@ transform: translateY(0);
         </div>
       </div>
     </section>
+
+    <!-- NUEVA SECCIÓN: GALERÍA DE PROYECTOS -->
+    <section id="portfolio" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
+      <div class="animated-item" data-delay="0.1">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-4">Proyectos Realizados</h2>
+        <p class="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12">
+          Una muestra de trabajos donde combino el diseño UI/UX con el desarrollo interactivo y la integración de plataformas e-learning.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Proyecto 1 -->
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.2">
+          <div class="h-48 bg-zinc-200 dark:bg-zinc-700 relative overflow-hidden">
+            <img src="ruta-imagen-proyecto1.jpg" alt="Plataforma de Cursos Online" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Desarrollo Web / UX</span>
+            <h3 class="text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1 mb-2">Plataforma Didacsis</h3>
+            <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">Maquetación e implementación de cursos interactivos con consumo de APIs para el seguimiento en tiempo real del estudiante.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">HTML5/CSS3</span>
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">JavaScript</span>
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.4">
+          <div class="h-48 bg-zinc-200 dark:bg-zinc-700 relative overflow-hidden">
+            <img src="ruta-imagen-proyecto2.jpg" alt="Contenido Animado E-learning" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Diseño Gráfico / Animación</span>
+            <h3 class="text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1 mb-2">Aula de Humanidades</h3>
+            <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">Creación de assets visuales y piezas animadas multimedia para entornos educativos virtuales interactivos.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">Illustrator</span>
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">After Effects</span>
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">UI Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 3 -->
+        <div class="bg-white dark:bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animated-item" data-delay="0.6">
+          <div class="h-48 bg-zinc-200 dark:bg-zinc-700 relative overflow-hidden">
+            <img src="ruta-imagen-proyecto3.jpg" alt="Integración de IA" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Desarrollo Avanzado</span>
+            <h3 class="text-xl font-bold text-zinc-800 dark:text-zinc-100 mt-1 mb-2">Web App Inteligente</h3>
+            <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">Interfaz adaptativa con backend en Python orientada a la automatización y análisis predictivo de datos.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">Python</span>
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">Tailwind CSS</span>
+              <span class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 rounded text-xs">IA Model</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="experience" class="py-16 md:py-24 border-t border-zinc-200 dark:border-zinc-700">
       <div class="animated-item" data-delay="0.1">
         <h2 class="text-3xl md:text-4xl font-bold text-center text-zinc-900 dark:text-zinc-50 mb-4">Trayectoria Profesional y Académica</h2>
@@ -283,7 +358,7 @@ transform: translateY(0);
                  {
                     type: 'Educación',
                     date: 'Curso',
-                    title: 'Curso de Desasrollo con IA',
+                    title: 'Curso de Desarrollo con IA',
                     institution: 'BIG school',
                     details: [
                         'Adquisición de habilidades para integrar modelos de Inteligencia Artificial y Machine Learning en aplicaciones web, utilizando Python y librerías especializadas. Enfoque en la optimización de procesos y la creación de funcionalidades inteligentes.'
@@ -319,7 +394,7 @@ transform: translateY(0);
             createSkillBar(skill, skillsDesignContainer, false);
         });
 
-        // Animate skill bars on intersection (using the existing observer logic)
+        // Animate elements on intersection (Observer actualizado para incluir el Portfolio)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -328,20 +403,21 @@ transform: translateY(0);
                         bar.style.width = `${bar.dataset.level}%`;
                     });
 
-                    // Activate animated items within the section
+                    // Activar animaciones de entrada diferidas (delays)
                     entry.target.querySelectorAll('.animated-item').forEach(el => {
                         setTimeout(() => {
                             el.style.opacity = 1;
                             el.style.transform = 'translateY(0)';
-                        }, parseFloat(el.dataset.delay) * 1000);
+                        }, parseFloat(el.dataset.delay || 0.1) * 1000);
                     });
 
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 }); // Bajo umbral para que la animación empiece antes
+        }, { threshold: 0.1 });
 
         observer.observe(document.getElementById('skills'));
+        observer.observe(document.getElementById('portfolio')); // Observar portafolio
         observer.observe(document.getElementById('experience'));
         observer.observe(document.querySelector('footer'));
 
@@ -379,16 +455,10 @@ transform: translateY(0);
             });
         });
 
-        // Initialize general animated items
+        // Inicializar delays de transición en general
         document.querySelectorAll('.animated-item').forEach(item => {
             item.style.transitionDelay = `${item.dataset.delay}s`;
         });
-
-        // Special handler for initial header animation
-        window.addEventListener('load', () => {
-             // Already handled by CSS keyframes
-        });
-
 
         // Skills Chart
         const ctx = document.getElementById('skillsChart').getContext('2d');
@@ -438,8 +508,6 @@ transform: translateY(0);
             }
         });
 
-        // Solución temporal para que el color de la leyenda del gráfico se adapte al modo oscuro
-        // Esto no es ideal, ya que chart.js no reacciona al modo oscuro de forma nativa sin un theme
         const updateChartColors = () => {
             const isDark = htmlElement.classList.contains('dark');
              skillsChart.options.plugins.legend.labels.color = isDark ? '#d4d4d8' : '#3f3f46'; // Zinc 300 / Zinc 700
@@ -449,10 +517,8 @@ transform: translateY(0);
         // Observador para actualizar el gráfico cuando cambia el tema
         const observerForChart = new MutationObserver(updateChartColors);
         observerForChart.observe(htmlElement, { attributes: true, attributeFilter: ['class'] });
-        updateChartColors(); // Llamar al inicio
+        updateChartColors(); 
     });
 </script>
 </body>
-
 </html>
-
